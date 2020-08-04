@@ -10,6 +10,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TS2MP4_Video_Converter", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedialInfo", "MedialInfo\MedialInfo.csproj", "{592F10C5-5DB8-4A41-B2E8-1910F7C0A4BC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScreenShots", "ScreenShots", "{EAAD284B-18A7-469A-94C0-3A5FC2B803C0}"
+	ProjectSection(SolutionItems) = preProject
+		ScreenShots\configs.jpg = ScreenShots\configs.jpg
+		ScreenShots\file.jpg = ScreenShots\file.jpg
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
