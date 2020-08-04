@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="TS2MP4_Video_Converter.Views.ConfigsUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TS2MP4_Video_Converter.Views"
+             mc:Ignorable="d" 
+             Background="White"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="ffmpeg Arguments"
+                  Padding="5">
+            <StackPanel>
+                <RadioButton Content="Default Args: '-i $InputFile -y -async 1 -b 2000k -ar $AudioSamplingRateHz -ac 2 -v 0 -f mp4 -vcodec libx264 $OutputFile'"
+                             Margin="5"
+                             IsChecked="{Binding IsDefault, FallbackValue=True}"
+                             />
+                <RadioButton Margin="5"
+                             HorizontalContentAlignment="Stretch"
+                             x:Name="cutomArgsCheckBox">
+                    <StackPanel IsEnabled="{Binding ElementName=cutomArgsCheckBox, Path=IsChecked}">
+                        <TextBlock Text="Custom Args" />
+                        <TextBox MinHeight="50"
+                                 Text="{Binding CustomArgs, FallbackValue='-i $InputFile -y -async 1 -b 2000k -ar $AudioSamplingRateHz -ac 2 -v 0 -f mp4 -vcodec libx264 $OutputFile'}"
+                                 Margin="5"/>
+                        <TextBlock Text="note: you can use some variables such as $VideoBitrate which will contains the Video bitrate forech .ts file."
+                                   TextWrapping="Wrap"/>
+                        <TextBlock Text="variables: $InputFile, $VideoBitrate, $AudioSamplingRateHz, $OutputFile."
+                                   TextWrapping="Wrap"/>
+                    </StackPanel>
+                </RadioButton>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="Output Directory"
+                  Padding="5"
+                  Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <TextBox Grid.Row="1"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Stretch"
+                         Text="{Binding OutputDirectory, FallbackValue='$Videos\\TS2MP4'}"/>
+
+                <Button Content="..."
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="5"
+                        Width="20"
+                        Height="20"
+                        Command="{Binding BrowseCommand}"/>
+            </Grid>
+        </GroupBox>
+
+
+        <GroupBox Header="Delete File After Convert"
+                  Padding="5"
+                  Grid.Row="2">
+            <CheckBox IsChecked="{Binding IsDelete}"
+                      Content="Delete .ts File after convert success"/>
+        </GroupBox>
+
+    </Grid>
+</UserControl>

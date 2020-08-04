@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="TS2MP4_Video_Converter.Views.FilesUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TS2MP4_Video_Converter.Views"
+             xmlns:conv="clr-namespace:TS2MP4_Video_Converter.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="0"
+                    Margin="10 0">
+            <Button Padding="5" 
+                    Height="30"
+                    Width="30"
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    BorderThickness="0"
+                    Command="{Binding AddCommand}"
+                    >
+                <Image Source="{conv:ImageSourceProvider Uri={conv:ResourcePath Path=add.png}}"/>
+            </Button>
+            <!--<Button Padding="5" 
+                    Height="30"
+                    Width="30"
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    BorderThickness="0"
+                    Command="{Binding DeleteCommand}">
+                <Image Source="{conv:ImageSourceProvider Uri={conv:ResourcePath Path=delete.png}}"/>
+            </Button>-->
+        </StackPanel>
+
+        <ListView Grid.Row="1"
+                 Margin="5"
+                 ItemsSource="{Binding TsFilesCollection}"
+                 SelectedItem="{Binding SelectedTsFile}"
+                 HorizontalContentAlignment="Stretch"
+                 >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <local:TsCollectionItemUserControl />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <GridSplitter Background="Gray" 
+                      Grid.Row="2"
+                      Width="3"/>
+
+        <DockPanel Grid.Row="3">
+            <TextBlock DockPanel.Dock="Top"
+                       Text="Log"
+                       Margin="5 5 5 0"/>
+
+            <TextBox Margin="5"
+                     Text="{Binding Log}"
+                     IsReadOnly="True"
+                     Name="logTextBox"
+                     TextChanged="logTextBox_TextChanged"/>
+        </DockPanel>
+    </Grid>
+</UserControl>
