@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,1489 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FFmpegHelp" xml:space="preserve">
+    <value>ffmpeg version N-37208-g01fcbdf Copyright (c) 2000-2012 the FFmpeg developers
+  built on Jan 27 2012 18:34:52 with gcc 4.6.2
+  configuration: --enable-gpl --enable-version3 --disable-w32threads --enable-runtime-cpudetect --enable-avisynth --enable-bzlib --enable-frei0r --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libfreetype --enable-libgsm --enable-libmp3lame --enable-libopenjpeg --enable-librtmp --enable-libschroedinger --enable-libspeex --enable-libtheora --enable-libvo-aacenc --enable-libvo-amrwbenc --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libxavs --enable-libxvid --enable-zlib
+  libavutil      51. 34.101 / 51. 34.101
+  libavcodec     53. 60.100 / 53. 60.100
+  libavformat    53. 31.100 / 53. 31.100
+  libavdevice    53.  4.100 / 53.  4.100
+  libavfilter     2. 60.100 /  2. 60.100
+  libswscale      2.  1.100 /  2.  1.100
+  libswresample   0.  6.100 /  0.  6.100
+  libpostproc    52.  0.100 / 52.  0.100
+Hyper fast Audio and Video encoder
+usage: ffmpeg [options] [[infile options] -i infile]... {[outfile options] outfile}...
+
+Main options:
+-L                  show license
+-h                  show help
+-?                  show help
+-help               show help
+--help              show help
+-version            show version
+-formats            show available formats
+-codecs             show available codecs
+-bsfs               show available bit stream filters
+-protocols          show available protocols
+-filters            show available filters
+-pix_fmts           show available pixel formats
+-sample_fmts        show available audio sample formats
+-loglevel loglevel  set libav* logging level
+-v loglevel         set libav* logging level
+-debug flags        set debug flags
+-report             generate a report
+-max_alloc bytes    set maximum size of a single allocated block
+-f fmt              force format
+-i filename         input file name
+-y                  overwrite output files
+-n                  do not overwrite output files
+-c codec            codec name
+-codec codec        codec name
+-pre preset         preset name
+-map_metadata outfile[,metadata]:infile[,metadata]  set metadata information of outfile from infile
+-t duration         record or transcode "duration" seconds of audio/video
+-fs limit_size      set the limit file size in bytes
+-ss time_off        set the start time offset
+-itsoffset time_off  set the input ts offset
+-itsscale scale     set the input ts scale
+-timestamp time     set the recording timestamp ('now' to set the current time)
+-metadata string=string  add metadata
+-dframes number     set the number of data frames to record
+-timelimit limit    set max runtime in seconds
+-target type        specify target file type ("vcd", "svcd", "dvd", "dv", "dv50", "pal-vcd", "ntsc-svcd", ...)
+-xerror             exit on error
+-frames number      set the number of frames to record
+-tag fourcc/tag     force codec tag/fourcc
+-filter filter_list  set stream filterchain
+-stats              print progress report during encoding
+-attach filename    add an attachment to the output file
+-dump_attachment filename  extract an attachment into a file
+-bsf bitstream_filters  A comma-separated list of bitstream filters
+-dcodec codec       force data codec ('copy' to copy stream)
+
+Advanced options:
+-map [-]input_file_id[:stream_specifier][,sync_file_id[:stream_s  set input stream mapping
+-map_channel file.stream.channel[:syncfile.syncstream]  map an audio channel from one stream to another
+-map_chapters input_file_index  set chapters mapping
+-benchmark          add timings for benchmarking
+-dump               dump each input packet
+-hex                when dumping packets, also dump the payload
+-re                 read input at native frame rate
+-loop_input         deprecated, use -loop
+-loop_output        deprecated, use -loop
+-vsync              video sync method
+-async              audio sync method
+-adrift_threshold threshold  audio drift threshold
+-copyts             copy timestamps
+-copytb source      copy input stream time base when stream copying
+-shortest           finish encoding within shortest input
+-dts_delta_threshold threshold  timestamp discontinuity delta threshold
+-copyinkf           copy initial non-keyframes
+-q q                use fixed quality scale (VBR)
+-qscale q           use fixed quality scale (VBR)
+-streamid streamIndex:value  set the value of an outfile streamid
+-muxdelay seconds   set the maximum demux-decode delay
+-muxpreload seconds  set the initial demux-decode delay
+-fpre filename      set options from indicated preset file
+
+Video options:
+-vframes number     set the number of video frames to record
+-r rate             set frame rate (Hz value, fraction or abbreviation)
+-s size             set frame size (WxH or abbreviation)
+-aspect aspect      set aspect ratio (4:3, 16:9 or 1.3333, 1.7777)
+-bits_per_raw_sample number  set the number of bits per raw sample
+-croptop size       Removed, use the crop filter instead
+-cropbottom size    Removed, use the crop filter instead
+-cropleft size      Removed, use the crop filter instead
+-cropright size     Removed, use the crop filter instead
+-padtop size        Removed, use the pad filter instead
+-padbottom size     Removed, use the pad filter instead
+-padleft size       Removed, use the pad filter instead
+-padright size      Removed, use the pad filter instead
+-padcolor color     Removed, use the pad filter instead
+-vn                 disable video
+-vcodec codec       force video codec ('copy' to copy stream)
+-sameq              use same quantizer as source (implies VBR)
+-same_quant         use same quantizer as source (implies VBR)
+-pass n             select the pass number (1 or 2)
+-passlogfile prefix  select two pass log file name prefix
+-vf filter list     video filters
+-b bitrate          video bitrate (please use -b:v)
+-dn                 disable data
+
+Advanced Video options:
+-pix_fmt format     set pixel format
+-intra              use only intra frames
+-vdt n              discard threshold
+-rc_override override  rate control override for specific intervals
+-deinterlace        deinterlace pictures
+-psnr               calculate PSNR of compressed frames
+-vstats             dump video coding statistics to file
+-vstats_file file   dump video coding statistics to file
+-intra_matrix matrix  specify intra matrix coeffs
+-inter_matrix matrix  specify inter matrix coeffs
+-top                top=1/bottom=0/auto=-1 field first
+-dc precision       intra_dc_precision
+-vtag fourcc/tag    force video tag/fourcc
+-qphist             show QP histogram
+-force_fps          force the selected framerate, disable the best supported framerate selection
+-force_key_frames timestamps  force key frames at specified timestamps
+-vbsf video bitstream_filters  deprecated
+-vpre preset        set the video options to the indicated preset
+
+Audio options:
+-aframes number     set the number of audio frames to record
+-aq quality         set audio quality (codec-specific)
+-ar rate            set audio sampling rate (in Hz)
+-ac channels        set number of audio channels
+-an                 disable audio
+-acodec codec       force audio codec ('copy' to copy stream)
+-vol volume         change audio volume (256=normal)
+-rmvol volume       rematrix volume (as factor)
+
+Advanced Audio options:
+-atag fourcc/tag    force audio tag/fourcc
+-sample_fmt format  set sample format
+-absf audio bitstream_filters  deprecated
+-apre preset        set the audio options to the indicated preset
+
+Subtitle options:
+-sn                 disable subtitle
+-scodec codec       force subtitle codec ('copy' to copy stream)
+-stag fourcc/tag    force subtitle tag/fourcc
+-spre preset        set the subtitle options to the indicated preset
+
+Audio/Video grab options:
+-vc channel         deprecated, use -channel
+-tvstd standard     deprecated, use -standard
+-isync              sync read on input
+
+AVCodecContext AVOptions:
+-b                 &lt;int&gt;   E.VA. set bitrate (in bits/s)
+-ab                &lt;int&gt;   E..A. set bitrate (in bits/s)
+-bt                &lt;int&gt;   E.V.. set video bitrate tolerance (in bits/s)
+-flags             &lt;flags&gt; EDVA.
+   mv4                     E.V.. use four motion vector by macroblock (mpeg4)
+   obmc                    E.V.. use overlapped block motion compensation (h263+)
+   qpel                    E.V.. use 1/4 pel motion compensation
+   loop                    E.V.. use loop filter
+   gmc                     E.V.. use gmc
+   mv0                     E.V.. always try a mb with mv=&lt;0,0&gt;
+   part                    E.V.. use data partitioning
+   gray                    EDV.. only decode/encode grayscale
+   psnr                    E.V.. error[?] variables will be set during encoding
+   naq                     E.V.. normalize adaptive quantization
+   ildct                   E.V.. use interlaced dct
+   low_delay               EDV.. force low delay
+   alt                     E.V.. enable alternate scantable (mpeg2/mpeg4)
+   global_header           E.VA. place global headers in extradata instead of every keyframe
+   bitexact                EDVAS use only bitexact stuff (except (i)dct)
+   aic                     E.V.. h263 advanced intra coding / mpeg4 ac prediction
+   umv                     E.V.. use unlimited motion vectors
+   cbp                     E.V.. use rate distortion optimization for cbp
+   qprd                    E.V.. use rate distortion optimization for qp selection
+   aiv                     E.V.. h263 alternative inter vlc
+   slice                   E.V..
+   ilme                    E.V.. interlaced motion estimation
+   scan_offset             E.V.. will reserve space for svcd scan offset user data
+   cgop                    E.V.. closed gop
+-me_method         &lt;int&gt;   E.V.. set motion estimation method
+   zero                    E.V.. zero motion estimation (fastest)
+   full                    E.V.. full motion estimation (slowest)
+   epzs                    E.V.. EPZS motion estimation (default)
+   esa                     E.V.. esa motion estimation (alias for full)
+   tesa                    E.V.. tesa motion estimation
+   dia                     E.V.. dia motion estimation (alias for epzs)
+   log                     E.V.. log motion estimation
+   phods                   E.V.. phods motion estimation
+   x1                      E.V.. X1 motion estimation
+   hex                     E.V.. hex motion estimation
+   umh                     E.V.. umh motion estimation
+   iter                    E.V.. iter motion estimation
+-g                 &lt;int&gt;   E.V.. set the group of picture size
+-ar                &lt;int&gt;   ED.A. set audio sampling rate (in Hz)
+-ac                &lt;int&gt;   ED.A. set number of audio channels
+-cutoff            &lt;int&gt;   E..A. set cutoff bandwidth
+-frame_size        &lt;int&gt;   E..A.
+-qcomp             &lt;float&gt; E.V.. video quantizer scale compression (VBR)
+-qblur             &lt;float&gt; E.V.. video quantizer scale blur (VBR)
+-qmin              &lt;int&gt;   E.V.. min video quantizer scale (VBR)
+-qmax              &lt;int&gt;   E.V.. max video quantizer scale (VBR)
+-qdiff             &lt;int&gt;   E.V.. max difference between the quantizer scale (VBR)
+-bf                &lt;int&gt;   E.V.. use 'frames' B frames
+-b_qfactor         &lt;float&gt; E.V.. qp factor between p and b frames
+-rc_strategy       &lt;int&gt;   E.V.. ratecontrol method
+-b_strategy        &lt;int&gt;   E.V.. strategy to choose between I/P/B-frames
+-wpredp            &lt;int&gt;   E.V.. weighted prediction analysis method
+-ps                &lt;int&gt;   E.V.. rtp payload size in bytes
+-bug               &lt;flags&gt; .DV.. workaround not auto detected encoder bugs
+   autodetect              .DV..
+   old_msmpeg4             .DV.. some old lavc generated msmpeg4v3 files (no autodetection)
+   xvid_ilace              .DV.. Xvid interlacing bug (autodetected if fourcc==XVIX)
+   ump4                    .DV.. (autodetected if fourcc==UMP4)
+   no_padding              .DV.. padding bug (autodetected)
+   amv                     .DV..
+   ac_vlc                  .DV.. illegal vlc bug (autodetected per fourcc)
+   qpel_chroma             .DV..
+   std_qpel                .DV.. old standard qpel (autodetected per fourcc/version)
+   qpel_chroma2            .DV..
+   direct_blocksize         .DV.. direct-qpel-blocksize bug (autodetected per fourcc/version)
+   edge                    .DV.. edge padding bug (autodetected per fourcc/version)
+   hpel_chroma             .DV..
+   dc_clip                 .DV..
+   ms                      .DV.. workaround various bugs in microsofts broken decoders
+   trunc                   .DV.. trancated frames
+-lelim             &lt;int&gt;   E.V.. single coefficient elimination threshold for luminance (negative values also consider dc coefficient)
+-celim             &lt;int&gt;   E.V.. single coefficient elimination threshold for chrominance (negative values also consider dc coefficient)
+-strict            &lt;int&gt;   EDVA. how strictly to follow the standards
+   very                    EDV.. strictly conform to a older more strict version of the spec or reference software
+   strict                  EDV.. strictly conform to all the things in the spec no matter what consequences
+   normal                  EDV..
+   unofficial              EDV.. allow unofficial extensions
+   experimental            EDV.. allow non standardized experimental things
+-b_qoffset         &lt;float&gt; E.V.. qp offset between P and B frames
+-er                &lt;int&gt;   .DVA. set error detection aggressivity
+   careful                 .DV..
+   compliant               .DV..
+   aggressive              .DV..
+   very_aggressive         .DV..
+   explode                 .DV.. abort decoding on error recognition
+-err_detect        &lt;flags&gt; .DVA. set error detection flags
+   crccheck                .DVA. verify embedded CRCs
+   bitstream               .DVA. detect bitstream specification deviations
+   buffer                  .DVA. detect improper bitstream length
+   explode                 .DVA. abort decoding on minor error detection
+   careful                 .DVA. consider things that violate the spec and have not been seen in the wild as errors
+   compliant               .DVA. consider all spec non compliancies as errors
+   aggressive              .DVA. consider things that a sane encoder shouldnt do as an error
+-mpeg_quant        &lt;int&gt;   E.V.. use MPEG quantizers instead of H.263
+-qsquish           &lt;float&gt; E.V.. how to keep quantizer between qmin and qmax (0 = clip, 1 = use differentiable function)
+-rc_qmod_amp       &lt;float&gt; E.V.. experimental quantizer modulation
+-rc_qmod_freq      &lt;int&gt;   E.V.. experimental quantizer modulation
+-rc_eq             &lt;string&gt; E.V.. set rate control equation
+-maxrate           &lt;int&gt;   E.V.. set max video bitrate tolerance (in bits/s)
+-minrate           &lt;int&gt;   E.V.. set min video bitrate tolerance (in bits/s)
+-bufsize           &lt;int&gt;   E.VA. set ratecontrol buffer size (in bits)
+-rc_buf_aggressivity &lt;float&gt; E.V.. currently useless
+-i_qfactor         &lt;float&gt; E.V.. qp factor between P and I frames
+-i_qoffset         &lt;float&gt; E.V.. qp offset between P and I frames
+-rc_init_cplx      &lt;float&gt; E.V.. initial complexity for 1-pass encoding
+-dct               &lt;int&gt;   E.V.. DCT algorithm
+   auto                    E.V.. autoselect a good one (default)
+   fastint                 E.V.. fast integer
+   int                     E.V.. accurate integer
+   mmx                     E.V..
+   mlib                    E.V..
+   altivec                 E.V..
+   faan                    E.V.. floating point AAN DCT
+-lumi_mask         &lt;float&gt; E.V.. compresses bright areas stronger than medium ones
+-tcplx_mask        &lt;float&gt; E.V.. temporal complexity masking
+-scplx_mask        &lt;float&gt; E.V.. spatial complexity masking
+-p_mask            &lt;float&gt; E.V.. inter masking
+-dark_mask         &lt;float&gt; E.V.. compresses dark areas stronger than medium ones
+-idct              &lt;int&gt;   EDV.. select IDCT implementation
+   auto                    EDV..
+   int                     EDV..
+   simple                  EDV..
+   simplemmx               EDV..
+   libmpeg2mmx             EDV..
+   ps2                     EDV..
+   mlib                    EDV..
+   arm                     EDV..
+   altivec                 EDV..
+   sh4                     EDV..
+   simplearm               EDV..
+   simplearmv5te           EDV..
+   simplearmv6             EDV..
+   simpleneon              EDV..
+   simplealpha             EDV..
+   h264                    EDV..
+   vp3                     EDV..
+   ipp                     EDV..
+   xvidmmx                 EDV..
+   faani                   EDV.. floating point AAN IDCT
+-ec                &lt;flags&gt; .DV.. set error concealment strategy
+   guess_mvs               .DV.. iterative motion vector (MV) search (slow)
+   deblock                 .DV.. use strong deblock filter for damaged MBs
+-pred              &lt;int&gt;   E.V.. prediction method
+   left                    E.V..
+   plane                   E.V..
+   median                  E.V..
+-aspect            &lt;rational&gt; E.V.. sample aspect ratio
+-debug             &lt;flags&gt; EDVAS print specific debug info
+   pict                    .DV.. picture info
+   rc                      E.V.. rate control
+   bitstream               .DV..
+   mb_type                 .DV.. macroblock (MB) type
+   qp                      .DV.. per-block quantization parameter (QP)
+   mv                      .DV.. motion vector
+   dct_coeff               .DV..
+   skip                    .DV..
+   startcode               .DV..
+   pts                     .DV..
+   er                      .DV.. error recognition
+   mmco                    .DV.. memory management control operations (H.264)
+   bugs                    .DV..
+   vis_qp                  .DV.. visualize quantization parameter (QP), lower QP are tinted greener
+   vis_mb_type             .DV.. visualize block types
+   buffers                 .DV.. picture buffer allocations
+   thread_ops              .DV.. threading operations
+-vismv             &lt;int&gt;   .DV.. visualize motion vectors (MVs)
+   pf                      .DV.. forward predicted MVs of P-frames
+   bf                      .DV.. forward predicted MVs of B-frames
+   bb                      .DV.. backward predicted MVs of B-frames
+-cmp               &lt;int&gt;   E.V.. full pel me compare function
+   sad                     E.V.. sum of absolute differences, fast (default)
+   sse                     E.V.. sum of squared errors
+   satd                    E.V.. sum of absolute Hadamard transformed differences
+   dct                     E.V.. sum of absolute DCT transformed differences
+   psnr                    E.V.. sum of squared quantization errors (avoid, low quality)
+   bit                     E.V.. number of bits needed for the block
+   rd                      E.V.. rate distortion optimal, slow
+   zero                    E.V.. 0
+   vsad                    E.V.. sum of absolute vertical differences
+   vsse                    E.V.. sum of squared vertical differences
+   nsse                    E.V.. noise preserving sum of squared differences
+   w53                     E.V.. 5/3 wavelet, only used in snow
+   w97                     E.V.. 9/7 wavelet, only used in snow
+   dctmax                  E.V..
+   chroma                  E.V..
+-subcmp            &lt;int&gt;   E.V.. sub pel me compare function
+   sad                     E.V.. sum of absolute differences, fast (default)
+   sse                     E.V.. sum of squared errors
+   satd                    E.V.. sum of absolute Hadamard transformed differences
+   dct                     E.V.. sum of absolute DCT transformed differences
+   psnr                    E.V.. sum of squared quantization errors (avoid, low quality)
+   bit                     E.V.. number of bits needed for the block
+   rd                      E.V.. rate distortion optimal, slow
+   zero                    E.V.. 0
+   vsad                    E.V.. sum of absolute vertical differences
+   vsse                    E.V.. sum of squared vertical differences
+   nsse                    E.V.. noise preserving sum of squared differences
+   w53                     E.V.. 5/3 wavelet, only used in snow
+   w97                     E.V.. 9/7 wavelet, only used in snow
+   dctmax                  E.V..
+   chroma                  E.V..
+-mbcmp             &lt;int&gt;   E.V.. macroblock compare function
+   sad                     E.V.. sum of absolute differences, fast (default)
+   sse                     E.V.. sum of squared errors
+   satd                    E.V.. sum of absolute Hadamard transformed differences
+   dct                     E.V.. sum of absolute DCT transformed differences
+   psnr                    E.V.. sum of squared quantization errors (avoid, low quality)
+   bit                     E.V.. number of bits needed for the block
+   rd                      E.V.. rate distortion optimal, slow
+   zero                    E.V.. 0
+   vsad                    E.V.. sum of absolute vertical differences
+   vsse                    E.V.. sum of squared vertical differences
+   nsse                    E.V.. noise preserving sum of squared differences
+   w53                     E.V.. 5/3 wavelet, only used in snow
+   w97                     E.V.. 9/7 wavelet, only used in snow
+   dctmax                  E.V..
+   chroma                  E.V..
+-ildctcmp          &lt;int&gt;   E.V.. interlaced dct compare function
+   sad                     E.V.. sum of absolute differences, fast (default)
+   sse                     E.V.. sum of squared errors
+   satd                    E.V.. sum of absolute Hadamard transformed differences
+   dct                     E.V.. sum of absolute DCT transformed differences
+   psnr                    E.V.. sum of squared quantization errors (avoid, low quality)
+   bit                     E.V.. number of bits needed for the block
+   rd                      E.V.. rate distortion optimal, slow
+   zero                    E.V.. 0
+   vsad                    E.V.. sum of absolute vertical differences
+   vsse                    E.V.. sum of squared vertical differences
+   nsse                    E.V.. noise preserving sum of squared differences
+   w53                     E.V.. 5/3 wavelet, only used in snow
+   w97                     E.V.. 9/7 wavelet, only used in snow
+   dctmax                  E.V..
+   chroma                  E.V..
+-dia_size          &lt;int&gt;   E.V.. diamond type &amp; size for motion estimation
+-last_pred         &lt;int&gt;   E.V.. amount of motion predictors from the previous frame
+-preme             &lt;int&gt;   E.V.. pre motion estimation
+-precmp            &lt;int&gt;   E.V.. pre motion estimation compare function
+   sad                     E.V.. sum of absolute differences, fast (default)
+   sse                     E.V.. sum of squared errors
+   satd                    E.V.. sum of absolute Hadamard transformed differences
+   dct                     E.V.. sum of absolute DCT transformed differences
+   psnr                    E.V.. sum of squared quantization errors (avoid, low quality)
+   bit                     E.V.. number of bits needed for the block
+   rd                      E.V.. rate distortion optimal, slow
+   zero                    E.V.. 0
+   vsad                    E.V.. sum of absolute vertical differences
+   vsse                    E.V.. sum of squared vertical differences
+   nsse                    E.V.. noise preserving sum of squared differences
+   w53                     E.V.. 5/3 wavelet, only used in snow
+   w97                     E.V.. 9/7 wavelet, only used in snow
+   dctmax                  E.V..
+   chroma                  E.V..
+-pre_dia_size      &lt;int&gt;   E.V.. diamond type &amp; size for motion estimation pre-pass
+-subq              &lt;int&gt;   E.V.. sub pel motion estimation quality
+-me_range          &lt;int&gt;   E.V.. limit motion vectors range (1023 for DivX player)
+-ibias             &lt;int&gt;   E.V.. intra quant bias
+-pbias             &lt;int&gt;   E.V.. inter quant bias
+-global_quality    &lt;int&gt;   E.VA.
+-coder             &lt;int&gt;   E.V..
+   vlc                     E.V.. variable length coder / huffman coder
+   ac                      E.V.. arithmetic coder
+   raw                     E.V.. raw (no encoding)
+   rle                     E.V.. run-length coder
+   deflate                 E.V.. deflate-based coder
+-context           &lt;int&gt;   E.V.. context model
+-mbd               &lt;int&gt;   E.V.. macroblock decision algorithm (high quality mode)
+   simple                  E.V.. use mbcmp (default)
+   bits                    E.V.. use fewest bits
+   rd                      E.V.. use best rate distortion
+-sc_threshold      &lt;int&gt;   E.V.. scene change threshold
+-lmin              &lt;int&gt;   E.V.. min lagrange factor (VBR)
+-lmax              &lt;int&gt;   E.V.. max lagrange factor (VBR)
+-nr                &lt;int&gt;   E.V.. noise reduction
+-rc_init_occupancy &lt;int&gt;   E.V.. number of bits which should be loaded into the rc buffer before decoding starts
+-inter_threshold   &lt;int&gt;   E.V..
+-flags2            &lt;flags&gt; EDVA.
+   fast                    E.V.. allow non spec compliant speedup tricks
+   sgop                    E.V.. strictly enforce gop size
+   noout                   E.V.. skip bitstream encoding
+   local_header            E.V.. place global headers at every keyframe instead of in extradata
+   showall                 .DV.. Show all frames before the first keyframe
+   bpyramid                E.V.. allows B-frames to be used as references for predicting
+   wpred                   E.V.. weighted biprediction for b-frames (H.264)
+   mixed_refs              E.V.. one reference per partition, as opposed to one reference per macroblock
+   dct8x8                  E.V.. high profile 8x8 transform (H.264)
+   fastpskip               E.V.. fast pskip (H.264)
+   aud                     E.V.. access unit delimiters (H.264)
+   skiprd                  E.V.. RD optimal MB level residual skipping
+   ivlc                    E.V.. intra vlc table
+   drop_frame_timecode         E.V..
+   non_linear_q            E.V.. use non linear quantizer
+   reservoir               E..A. use bit reservoir
+   mbtree                  E.V.. use macroblock tree ratecontrol (x264 only)
+   psy                     E.V.. use psycho visual optimization
+   ssim                    E.V.. ssim will be calculated during encoding
+   intra_refresh           E.V.. use periodic insertion of intra blocks instead of keyframes
+-error             &lt;int&gt;   E.V..
+-antialias         &lt;int&gt;   .DV.. MP3 antialias algorithm
+   auto                    .DV..
+   fastint                 .DV..
+   int                     .DV..
+   float                   .DV..
+-qns               &lt;int&gt;   E.V.. quantizer noise shaping
+-threads           &lt;int&gt;   EDV..
+   auto                    EDV.. detect a good number of threads
+-me_threshold      &lt;int&gt;   E.V.. motion estimaton threshold
+-mb_threshold      &lt;int&gt;   E.V.. macroblock threshold
+-dc                &lt;int&gt;   E.V.. intra_dc_precision
+-nssew             &lt;int&gt;   E.V.. nsse weight
+-skip_top          &lt;int&gt;   .DV.. number of macroblock rows at the top which are skipped
+-skip_bottom       &lt;int&gt;   .DV.. number of macroblock rows at the bottom which are skipped
+-profile           &lt;int&gt;   E.VA.
+   unknown                 E.VA.
+   aac_main                E..A.
+   aac_low                 E..A.
+   aac_ssr                 E..A.
+   aac_ltp                 E..A.
+   dts                     E..A.
+   dts_es                  E..A.
+   dts_96_24               E..A.
+   dts_hd_hra              E..A.
+   dts_hd_ma               E..A.
+-level             &lt;int&gt;   E.VA.
+   unknown                 E.VA.
+-lowres            &lt;int&gt;   .DVA. decode at 1= 1/2, 2=1/4, 3=1/8 resolutions
+-skip_threshold    &lt;int&gt;   E.V.. frame skip threshold
+-skip_factor       &lt;int&gt;   E.V.. frame skip factor
+-skip_exp          &lt;int&gt;   E.V.. frame skip exponent
+-skipcmp           &lt;int&gt;   E.V.. frame skip compare function
+   sad                     E.V.. sum of absolute differences, fast (default)
+   sse                     E.V.. sum of squared errors
+   satd                    E.V.. sum of absolute Hadamard transformed differences
+   dct                     E.V.. sum of absolute DCT transformed differences
+   psnr                    E.V.. sum of squared quantization errors (avoid, low quality)
+   bit                     E.V.. number of bits needed for the block
+   rd                      E.V.. rate distortion optimal, slow
+   zero                    E.V.. 0
+   vsad                    E.V.. sum of absolute vertical differences
+   vsse                    E.V.. sum of squared vertical differences
+   nsse                    E.V.. noise preserving sum of squared differences
+   w53                     E.V.. 5/3 wavelet, only used in snow
+   w97                     E.V.. 9/7 wavelet, only used in snow
+   dctmax                  E.V..
+   chroma                  E.V..
+-border_mask       &lt;float&gt; E.V.. increases the quantizer for macroblocks close to borders
+-mblmin            &lt;int&gt;   E.V.. min macroblock lagrange factor (VBR)
+-mblmax            &lt;int&gt;   E.V.. max macroblock lagrange factor (VBR)
+-mepc              &lt;int&gt;   E.V.. motion estimation bitrate penalty compensation (1.0 = 256)
+-skip_loop_filter  &lt;int&gt;   .DV..
+   none                    .DV..
+   default                 .DV..
+   noref                   .DV..
+   bidir                   .DV..
+   nokey                   .DV..
+   all                     .DV..
+-skip_idct         &lt;int&gt;   .DV..
+   none                    .DV..
+   default                 .DV..
+   noref                   .DV..
+   bidir                   .DV..
+   nokey                   .DV..
+   all                     .DV..
+-skip_frame        &lt;int&gt;   .DV..
+   none                    .DV..
+   default                 .DV..
+   noref                   .DV..
+   bidir                   .DV..
+   nokey                   .DV..
+   all                     .DV..
+-bidir_refine      &lt;int&gt;   E.V.. refine the two motion vectors used in bidirectional macroblocks
+-brd_scale         &lt;int&gt;   E.V.. downscales frames for dynamic B-frame decision
+-crf               &lt;float&gt; E.V.. enables constant quality mode, and selects the quality (x264/VP8)
+-cqp               &lt;int&gt;   E.V.. constant quantization parameter rate control method
+-keyint_min        &lt;int&gt;   E.V.. minimum interval between IDR-frames
+-refs              &lt;int&gt;   E.V.. reference frames to consider for motion compensation
+-chromaoffset      &lt;int&gt;   E.V.. chroma qp offset from luma
+-bframebias        &lt;int&gt;   E.V.. influences how often B-frames are used
+-trellis           &lt;int&gt;   E.VA. rate-distortion optimal quantization
+-directpred        &lt;int&gt;   E.V.. direct mv prediction mode - 0 (none), 1 (spatial), 2 (temporal), 3 (auto)
+-complexityblur    &lt;float&gt; E.V.. reduce fluctuations in qp (before curve compression)
+-deblockalpha      &lt;int&gt;   E.V.. in-loop deblocking filter alphac0 parameter
+-deblockbeta       &lt;int&gt;   E.V.. in-loop deblocking filter beta parameter
+-partitions        &lt;flags&gt; E.V.. macroblock subpartition sizes to consider
+   parti4x4                E.V..
+   parti8x8                E.V..
+   partp4x4                E.V..
+   partp8x8                E.V..
+   partb8x8                E.V..
+-sc_factor         &lt;int&gt;   E.V.. multiplied by qscale for each frame and added to scene_change_score
+-mv0_threshold     &lt;int&gt;   E.V..
+-b_sensitivity     &lt;int&gt;   E.V.. adjusts sensitivity of b_frame_strategy 1
+-compression_level &lt;int&gt;   E.VA.
+-min_prediction_order &lt;int&gt;   E..A.
+-max_prediction_order &lt;int&gt;   E..A.
+-lpc_coeff_precision &lt;int&gt;   E..A. deprecated, use flac-specific options
+-prediction_order_method &lt;int&gt;   E..A. deprecated, use flac-specific options
+-min_partition_order &lt;int&gt;   E..A. deprecated, use flac-specific options
+-max_partition_order &lt;int&gt;   E..A. deprecated, use flac-specific options
+-timecode_frame_start &lt;int64&gt; E.V.. GOP timecode frame start number, in non drop frame format
+-request_channels  &lt;int&gt;   .D.A. set desired number of audio channels
+-drc_scale         &lt;float&gt; .D.A. percentage of dynamic range compression to apply
+-channel_layout    &lt;int64&gt; ED.A.
+-request_channel_layout &lt;int64&gt; .D.A.
+-rc_max_vbv_use    &lt;float&gt; E.V..
+-rc_min_vbv_use    &lt;float&gt; E.V..
+-ticks_per_frame   &lt;int&gt;   EDVA.
+-color_primaries   &lt;int&gt;   EDV..
+-color_trc         &lt;int&gt;   EDV..
+-colorspace        &lt;int&gt;   EDV..
+-color_range       &lt;int&gt;   EDV..
+-chroma_sample_location &lt;int&gt;   EDV..
+-psy_rd            &lt;float&gt; E.V.. specify psycho visual strength
+-psy_trellis       &lt;float&gt; E.V.. specify psycho visual trellis
+-aq_mode           &lt;int&gt;   E.V.. specify aq method
+-aq_strength       &lt;float&gt; E.V.. specify aq strength
+-rc_lookahead      &lt;int&gt;   E.V.. specify number of frames to look ahead for frametype
+-crf_max           &lt;float&gt; E.V.. in crf mode, prevents vbv from lowering quality beyond this point
+-lpc_type          &lt;int&gt;   E..A. deprecated, use flac-specific options
+-lpc_passes        &lt;int&gt;   E..A. deprecated, use flac-specific options
+-slices            &lt;int&gt;   E.V.. number of slices, used in parallelized encoding
+-thread_type       &lt;flags&gt; EDV.. select multithreading type
+   slice                   EDV..
+   frame                   EDV..
+-audio_service_type &lt;int&gt;   E..A. audio service type
+   ma                      E..A. Main Audio Service
+   ef                      E..A. Effects
+   vi                      E..A. Visually Impaired
+   hi                      E..A. Hearing Impaired
+   di                      E..A. Dialogue
+   co                      E..A. Commentary
+   em                      E..A. Emergency
+   vo                      E..A. Voice Over
+   ka                      E..A. Karaoke
+-request_sample_fmt &lt;int&gt;   .D.A. sample format audio decoders should prefer
+   u8                      .D.A. 8-bit unsigned integer
+   s16                     .D.A. 16-bit signed integer
+   s32                     .D.A. 32-bit signed integer
+   flt                     .D.A. 32-bit float
+   dbl                     .D.A. 64-bit double
+
+cljr encoder AVOptions:
+-dither_type       &lt;int&gt;   E.V.. Dither type
+
+dnxhd AVOptions:
+-nitris_compat     &lt;int&gt;   E.V.. encode with Avid Nitris compatibility
+
+H.263 encoder AVOptions:
+-obmc              &lt;int&gt;   E.V.. use overlapped block motion compensation.
+-structured_slices &lt;int&gt;   E.V.. Write slice start position at every GOB header instead of just GOB number.
+
+H.263p encoder AVOptions:
+-umv               &lt;int&gt;   E.V.. Use unlimited motion vectors.
+-aiv               &lt;int&gt;   E.V.. Use alternative inter VLC.
+-obmc              &lt;int&gt;   E.V.. use overlapped block motion compensation.
+-structured_slices &lt;int&gt;   E.V.. Write slice start position at every GOB header instead of just GOB number.
+
+H264 Decoder AVOptions:
+
+MJPEG decoder AVOptions:
+-extern_huff       &lt;int&gt;   .DV.. Use external huffman table.
+
+mpeg1video encoder AVOptions:
+-timecode          &lt;string&gt; E.V.. set timecode value following hh:mm:ss[:;.]ff format, use ';' or '.' before frame number for drop frame
+-intra_vlc         &lt;int&gt;   E.V.. Use MPEG-2 intra VLC table.
+-drop_frame_timecode &lt;int&gt;   E.V.. Timecode is in drop frame format.
+-scan_offset       &lt;int&gt;   E.V.. Reserve space for SVCD scan offset user data.
+
+mpeg2video encoder AVOptions:
+-timecode          &lt;string&gt; E.V.. set timecode value following hh:mm:ss[:;.]ff format, use ';' or '.' before frame number for drop frame
+-intra_vlc         &lt;int&gt;   E.V.. Use MPEG-2 intra VLC table.
+-drop_frame_timecode &lt;int&gt;   E.V.. Timecode is in drop frame format.
+-scan_offset       &lt;int&gt;   E.V.. Reserve space for SVCD scan offset user data.
+-non_linear_quant  &lt;int&gt;   E.V.. Use nonlinear quantizer.
+-alternate_scan    &lt;int&gt;   E.V.. Enable alternate scantable.
+
+MPEG4 encoder AVOptions:
+-data_partitioning &lt;int&gt;   E.V.. Use data partitioning.
+-alternate_scan    &lt;int&gt;   E.V.. Enable alternate scantable.
+
+MPEG4 Video Decoder AVOptions:
+
+rawdec AVOptions:
+-top               &lt;int&gt;   .DV.. top field first
+
+snow encoder AVOptions:
+-memc_only         &lt;int&gt;   E.V.. Only do ME/MC (I frames -&gt; ref, P frame -&gt; ME+MC).
+
+TIFF encoder AVOptions:
+-dpi               &lt;int&gt;   E.V.. set the image resolution (in dpi)
+-compression_algo  &lt;int&gt;   E.V..
+   packbits                E.V..
+   raw                     E.V..
+   lzw                     E.V..
+   deflate                 E.V..
+
+V210 Decoder AVOptions:
+-custom_stride     &lt;int&gt;   .DV.. Custom V210 stride
+
+AAC encoder AVOptions:
+-stereo_mode       &lt;int&gt;   E..A. Stereo coding method
+   auto                    E..A. Selected by the Encoder
+   ms_off                  E..A. Disable Mid/Side coding
+   ms_force                E..A. Force Mid/Side for the whole frame if possible
+-aac_coder         &lt;int&gt;   E..A.
+
+AC-3 Encoder AVOptions:
+-per_frame_metadata &lt;int&gt;   E..A. Allow Changing Metadata Per-Frame
+-center_mixlev     &lt;float&gt; E..A. Center Mix Level
+-surround_mixlev   &lt;float&gt; E..A. Surround Mix Level
+-mixing_level      &lt;int&gt;   E..A. Mixing Level
+-room_type         &lt;int&gt;   E..A. Room Type
+   notindicated            E..A. Not Indicated (default)
+   large                   E..A. Large Room
+   small                   E..A. Small Room
+-copyright         &lt;int&gt;   E..A. Copyright Bit
+-dialnorm          &lt;int&gt;   E..A. Dialogue Level (dB)
+-dsur_mode         &lt;int&gt;   E..A. Dolby Surround Mode
+   notindicated            E..A. Not Indicated (default)
+   on                      E..A. Dolby Surround Encoded
+   off                     E..A. Not Dolby Surround Encoded
+-original          &lt;int&gt;   E..A. Original Bit Stream
+-dmix_mode         &lt;int&gt;   E..A. Preferred Stereo Downmix Mode
+   notindicated            E..A. Not Indicated (default)
+   ltrt                    E..A. Lt/Rt Downmix Preferred
+   loro                    E..A. Lo/Ro Downmix Preferred
+-ltrt_cmixlev      &lt;float&gt; E..A. Lt/Rt Center Mix Level
+-ltrt_surmixlev    &lt;float&gt; E..A. Lt/Rt Surround Mix Level
+-loro_cmixlev      &lt;float&gt; E..A. Lo/Ro Center Mix Level
+-loro_surmixlev    &lt;float&gt; E..A. Lo/Ro Surround Mix Level
+-dsurex_mode       &lt;int&gt;   E..A. Dolby Surround EX Mode
+   notindicated            E..A. Not Indicated (default)
+   on                      E..A. Dolby Surround EX Encoded
+   off                     E..A. Not Dolby Surround EX Encoded
+-dheadphone_mode   &lt;int&gt;   E..A. Dolby Headphone Mode
+   notindicated            E..A. Not Indicated (default)
+   on                      E..A. Dolby Headphone Encoded
+   off                     E..A. Not Dolby Headphone Encoded
+-ad_conv_type      &lt;int&gt;   E..A. A/D Converter Type
+   standard                E..A. Standard (default)
+   hdcd                    E..A. HDCD
+-stereo_rematrixing &lt;int&gt;   E..A. Stereo Rematrixing
+-channel_coupling  &lt;int&gt;   E..A. Channel Coupling
+   auto                    E..A. Selected by the Encoder
+-cpl_start_band    &lt;int&gt;   E..A. Coupling Start Band
+   auto                    E..A. Selected by the Encoder
+
+AC3 decoder AVOptions:
+-drc_scale         &lt;float&gt; .D.A. percentage of dynamic range compression to apply
+
+Fixed-Point AC-3 Encoder AVOptions:
+-per_frame_metadata &lt;int&gt;   E..A. Allow Changing Metadata Per-Frame
+-center_mixlev     &lt;float&gt; E..A. Center Mix Level
+-surround_mixlev   &lt;float&gt; E..A. Surround Mix Level
+-mixing_level      &lt;int&gt;   E..A. Mixing Level
+-room_type         &lt;int&gt;   E..A. Room Type
+   notindicated            E..A. Not Indicated (default)
+   large                   E..A. Large Room
+   small                   E..A. Small Room
+-copyright         &lt;int&gt;   E..A. Copyright Bit
+-dialnorm          &lt;int&gt;   E..A. Dialogue Level (dB)
+-dsur_mode         &lt;int&gt;   E..A. Dolby Surround Mode
+   notindicated            E..A. Not Indicated (default)
+   on                      E..A. Dolby Surround Encoded
+   off                     E..A. Not Dolby Surround Encoded
+-original          &lt;int&gt;   E..A. Original Bit Stream
+-dmix_mode         &lt;int&gt;   E..A. Preferred Stereo Downmix Mode
+   notindicated            E..A. Not Indicated (default)
+   ltrt                    E..A. Lt/Rt Downmix Preferred
+   loro                    E..A. Lo/Ro Downmix Preferred
+-ltrt_cmixlev      &lt;float&gt; E..A. Lt/Rt Center Mix Level
+-ltrt_surmixlev    &lt;float&gt; E..A. Lt/Rt Surround Mix Level
+-loro_cmixlev      &lt;float&gt; E..A. Lo/Ro Center Mix Level
+-loro_surmixlev    &lt;float&gt; E..A. Lo/Ro Surround Mix Level
+-dsurex_mode       &lt;int&gt;   E..A. Dolby Surround EX Mode
+   notindicated            E..A. Not Indicated (default)
+   on                      E..A. Dolby Surround EX Encoded
+   off                     E..A. Not Dolby Surround EX Encoded
+-dheadphone_mode   &lt;int&gt;   E..A. Dolby Headphone Mode
+   notindicated            E..A. Not Indicated (default)
+   on                      E..A. Dolby Headphone Encoded
+   off                     E..A. Not Dolby Headphone Encoded
+-ad_conv_type      &lt;int&gt;   E..A. A/D Converter Type
+   standard                E..A. Standard (default)
+   hdcd                    E..A. HDCD
+-stereo_rematrixing &lt;int&gt;   E..A. Stereo Rematrixing
+-channel_coupling  &lt;int&gt;   E..A. Channel Coupling
+   auto                    E..A. Selected by the Encoder
+-cpl_start_band    &lt;int&gt;   E..A. Coupling Start Band
+   auto                    E..A. Selected by the Encoder
+
+E-AC-3 Encoder AVOptions:
+-per_frame_metadata &lt;int&gt;   E..A. Allow Changing Metadata Per-Frame
+-mixing_level      &lt;int&gt;   E..A. Mixing Level
+-room_type         &lt;int&gt;   E..A. Room Type
+   notindicated            E..A. Not Indicated (default)
+   large                   E..A. Large Room
+   small                   E..A. Small Room
+-copyright         &lt;int&gt;   E..A. Copyright Bit
+-dialnorm          &lt;int&gt;   E..A. Dialogue Level (dB)
+-dsur_mode         &lt;int&gt;   E..A. Dolby Surround Mode
+   notindicated            E..A. Not Indicated (default)
+   on                      E..A. Dolby Surround Encoded
+   off                     E..A. Not Dolby Surround Encoded
+-original          &lt;int&gt;   E..A. Original Bit Stream
+-dmix_mode         &lt;int&gt;   E..A. Preferred Stereo Downmix Mode
+   notindicated            E..A. Not Indicated (default)
+   ltrt                    E..A. Lt/Rt Downmix Preferred
+   loro                    E..A. Lo/Ro Downmix Preferred
+-ltrt_cmixlev      &lt;float&gt; E..A. Lt/Rt Center Mix Level
+-ltrt_surmixlev    &lt;float&gt; E..A. Lt/Rt Surround Mix Level
+-loro_cmixlev      &lt;float&gt; E..A. Lo/Ro Center Mix Level
+-loro_surmixlev    &lt;float&gt; E..A. Lo/Ro Surround Mix Level
+-dsurex_mode       &lt;int&gt;   E..A. Dolby Surround EX Mode
+   notindicated            E..A. Not Indicated (default)
+   on                      E..A. Dolby Surround EX Encoded
+   off                     E..A. Not Dolby Surround EX Encoded
+-dheadphone_mode   &lt;int&gt;   E..A. Dolby Headphone Mode
+   notindicated            E..A. Not Indicated (default)
+   on                      E..A. Dolby Headphone Encoded
+   off                     E..A. Not Dolby Headphone Encoded
+-ad_conv_type      &lt;int&gt;   E..A. A/D Converter Type
+   standard                E..A. Standard (default)
+   hdcd                    E..A. HDCD
+-stereo_rematrixing &lt;int&gt;   E..A. Stereo Rematrixing
+-channel_coupling  &lt;int&gt;   E..A. Channel Coupling
+   auto                    E..A. Selected by the Encoder
+-cpl_start_band    &lt;int&gt;   E..A. Coupling Start Band
+   auto                    E..A. Selected by the Encoder
+
+E-AC3 decoder AVOptions:
+-drc_scale         &lt;float&gt; .D.A. percentage of dynamic range compression to apply
+
+FLAC encoder AVOptions:
+-lpc_coeff_precision &lt;int&gt;   E..A. LPC coefficient precision
+-lpc_type          &lt;int&gt;   E..A. LPC algorithm
+   none                    E..A.
+   fixed                   E..A.
+   levinson                E..A.
+   cholesky                E..A.
+-lpc_passes        &lt;int&gt;   E..A. Number of passes to use for Cholesky factorization during LPC analysis
+-min_partition_order &lt;int&gt;   E..A.
+-max_partition_order &lt;int&gt;   E..A.
+-prediction_order_method &lt;int&gt;   E..A. Search method for selecting prediction order
+   estimation              E..A.
+   2level                  E..A.
+   4level                  E..A.
+   8level                  E..A.
+   search                  E..A.
+   log                     E..A.
+
+g722 decoder AVOptions:
+-bits_per_codeword &lt;flags&gt; .D.A. Bits per G722 codeword
+
+g726 AVOptions:
+-code_size         &lt;int&gt;   E..A. Bits per code
+
+libmp3lame encoder AVOptions:
+-reservoir         &lt;int&gt;   E..A. Use bit reservoir.
+
+libopencore_amrnb AVOptions:
+-dtx               &lt;int&gt;   E..A. Allow DTX (generate comfort noise)
+
+libspeex AVOptions:
+-abr               &lt;int&gt;   E..A. Use average bit rate
+-cbr_quality       &lt;int&gt;   E..A. Set quality value (0 to 10) for CBR
+-frames_per_packet &lt;int&gt;   E..A. Number of frames to encode in each packet
+
+libvo_amrwbenc AVOptions:
+-dtx               &lt;int&gt;   E..A. Allow DTX (generate comfort noise)
+
+libvorbis AVOptions:
+-iblock            &lt;double&gt; E..A. Sets the impulse block bias
+
+libvpx encoder AVOptions:
+-cpu-used          &lt;int&gt;   E.V.. Quality/Speed ratio modifier
+-auto-alt-ref      &lt;int&gt;   E.V.. Enable use of alternate reference frames (2-pass only)
+-lag-in-frames     &lt;int&gt;   E.V.. Number of frames to look ahead for alternate reference frame selection
+-arnr-maxframes    &lt;int&gt;   E.V.. altref noise reduction max frame count
+-arnr-strength     &lt;int&gt;   E.V.. altref noise reduction filter strength
+-arnr-type         &lt;int&gt;   E.V.. altref noise reduction filter type
+   backward                E.V..
+   forward                 E.V..
+   centered                E.V..
+-deadline          &lt;int&gt;   E.V.. Time to spend encoding, in microseconds.
+   best                    E.V..
+   good                    E.V..
+   realtime                E.V..
+-error-resilient   &lt;flags&gt; E.V.. Error resilience configuration
+   default                 E.V.. Improve resiliency against losses of whole frames
+   partitions              E.V.. The frame partitions are independently decodable by the bool decoder, meaning that partitions can be decoded even though earlier partitions have been lost. Note that intra predicition is still done over the partition boundary.
+-speed             &lt;int&gt;   E.V..
+-quality           &lt;int&gt;   E.V..
+   best                    E.V..
+   good                    E.V..
+   realtime                E.V..
+-vp8flags          &lt;flags&gt; E.V..
+   error_resilient         E.V.. enable error resilience
+   altref                  E.V.. enable use of alternate reference frames (VP8/2-pass only)
+-arnr_max_frames   &lt;int&gt;   E.V.. altref noise reduction max frame count
+-arnr_strength     &lt;int&gt;   E.V.. altref noise reduction filter strength
+-arnr_type         &lt;int&gt;   E.V.. altref noise reduction filter type
+-rc_lookahead      &lt;int&gt;   E.V.. Number of frames to look ahead for alternate reference frame selection
+-crf               &lt;int&gt;   E.V.. Select the quality for constant quality mode
+
+libx264 AVOptions:
+-preset            &lt;string&gt; E.V.. Set the encoding preset (cf. x264 --fullhelp)
+-tune              &lt;string&gt; E.V.. Tune the encoding params (cf. x264 --fullhelp)
+-profile           &lt;string&gt; E.V.. Set profile restrictions (cf. x264 --fullhelp)
+-fastfirstpass     &lt;int&gt;   E.V.. Use fast settings when encoding first pass
+-level             &lt;string&gt; E.V.. Specify level (as defined by Annex A)
+-passlogfile       &lt;string&gt; E.V.. Filename for 2 pass stats
+-wpredp            &lt;string&gt; E.V.. Weighted prediction for P-frames
+-x264opts          &lt;string&gt; E.V.. x264 options
+-crf               &lt;float&gt; E.V.. Select the quality for constant quality mode
+-crf_max           &lt;float&gt; E.V.. In CRF mode, prevents VBV from lowering quality beyond this point.
+-qp                &lt;int&gt;   E.V.. Constant quantization parameter rate control method
+-aq-mode           &lt;int&gt;   E.V.. AQ method
+   none                    E.V..
+   variance                E.V.. Variance AQ (complexity mask)
+   autovariance            E.V.. Auto-variance AQ (experimental)
+-aq-strength       &lt;float&gt; E.V.. AQ strength. Reduces blocking and blurring in flat and textured areas.
+-psy               &lt;int&gt;   E.V.. Use psychovisual optimizations.
+-psy-rd            &lt;string&gt; E.V.. Strength of psychovisual optimization, in &lt;psy-rd&gt;:&lt;psy-trellis&gt; format.
+-rc-lookahead      &lt;int&gt;   E.V.. Number of frames to look ahead for frametype and ratecontrol
+-weightb           &lt;int&gt;   E.V.. Weighted prediction for B-frames.
+-weightp           &lt;int&gt;   E.V.. Weighted prediction analysis method.
+   none                    E.V..
+   simple                  E.V..
+   smart                   E.V..
+-ssim              &lt;int&gt;   E.V.. Calculate and print SSIM stats.
+-intra-refresh     &lt;int&gt;   E.V.. Use Periodic Intra Refresh instead of IDR frames.
+-b-bias            &lt;int&gt;   E.V.. Influences how often B-frames are used
+-b-pyramid         &lt;int&gt;   E.V.. Keep some B-frames as references.
+   none                    E.V..
+   strict                  E.V.. Strictly hierarchical pyramid
+   normal                  E.V.. Non-strict (not Blu-ray compatible)
+-mixed-refs        &lt;int&gt;   E.V.. One reference per partition, as opposed to one reference per macroblock
+-8x8dct            &lt;int&gt;   E.V.. High profile 8x8 transform.
+-fast-pskip        &lt;int&gt;   E.V..
+-aud               &lt;int&gt;   E.V.. Use access unit delimiters.
+-mbtree            &lt;int&gt;   E.V.. Use macroblock tree ratecontrol.
+-deblock           &lt;string&gt; E.V.. Loop filter parameters, in &lt;alpha:beta&gt; form.
+-cplxblur          &lt;float&gt; E.V.. Reduce fluctuations in QP (before curve compression)
+-partitions        &lt;string&gt; E.V.. A comma-separated list of partitions to consider. Possible values: p8x8, p4x4, b8x8, i8x8, i4x4, none, all
+-direct-pred       &lt;int&gt;   E.V.. Direct MV prediction mode
+   none                    E.V..
+   spatial                 E.V..
+   temporal                E.V..
+   auto                    E.V..
+-slice-max-size    &lt;int&gt;   E.V.. Constant quantization parameter rate control method
+
+libx264rgb AVOptions:
+-preset            &lt;string&gt; E.V.. Set the encoding preset (cf. x264 --fullhelp)
+-tune              &lt;string&gt; E.V.. Tune the encoding params (cf. x264 --fullhelp)
+-profile           &lt;string&gt; E.V.. Set profile restrictions (cf. x264 --fullhelp)
+-fastfirstpass     &lt;int&gt;   E.V.. Use fast settings when encoding first pass
+-level             &lt;string&gt; E.V.. Specify level (as defined by Annex A)
+-passlogfile       &lt;string&gt; E.V.. Filename for 2 pass stats
+-wpredp            &lt;string&gt; E.V.. Weighted prediction for P-frames
+-x264opts          &lt;string&gt; E.V.. x264 options
+-crf               &lt;float&gt; E.V.. Select the quality for constant quality mode
+-crf_max           &lt;float&gt; E.V.. In CRF mode, prevents VBV from lowering quality beyond this point.
+-qp                &lt;int&gt;   E.V.. Constant quantization parameter rate control method
+-aq-mode           &lt;int&gt;   E.V.. AQ method
+   none                    E.V..
+   variance                E.V.. Variance AQ (complexity mask)
+   autovariance            E.V.. Auto-variance AQ (experimental)
+-aq-strength       &lt;float&gt; E.V.. AQ strength. Reduces blocking and blurring in flat and textured areas.
+-psy               &lt;int&gt;   E.V.. Use psychovisual optimizations.
+-psy-rd            &lt;string&gt; E.V.. Strength of psychovisual optimization, in &lt;psy-rd&gt;:&lt;psy-trellis&gt; format.
+-rc-lookahead      &lt;int&gt;   E.V.. Number of frames to look ahead for frametype and ratecontrol
+-weightb           &lt;int&gt;   E.V.. Weighted prediction for B-frames.
+-weightp           &lt;int&gt;   E.V.. Weighted prediction analysis method.
+   none                    E.V..
+   simple                  E.V..
+   smart                   E.V..
+-ssim              &lt;int&gt;   E.V.. Calculate and print SSIM stats.
+-intra-refresh     &lt;int&gt;   E.V.. Use Periodic Intra Refresh instead of IDR frames.
+-b-bias            &lt;int&gt;   E.V.. Influences how often B-frames are used
+-b-pyramid         &lt;int&gt;   E.V.. Keep some B-frames as references.
+   none                    E.V..
+   strict                  E.V.. Strictly hierarchical pyramid
+   normal                  E.V.. Non-strict (not Blu-ray compatible)
+-mixed-refs        &lt;int&gt;   E.V.. One reference per partition, as opposed to one reference per macroblock
+-8x8dct            &lt;int&gt;   E.V.. High profile 8x8 transform.
+-fast-pskip        &lt;int&gt;   E.V..
+-aud               &lt;int&gt;   E.V.. Use access unit delimiters.
+-mbtree            &lt;int&gt;   E.V.. Use macroblock tree ratecontrol.
+-deblock           &lt;string&gt; E.V.. Loop filter parameters, in &lt;alpha:beta&gt; form.
+-cplxblur          &lt;float&gt; E.V.. Reduce fluctuations in QP (before curve compression)
+-partitions        &lt;string&gt; E.V.. A comma-separated list of partitions to consider. Possible values: p8x8, p4x4, b8x8, i8x8, i4x4, none, all
+-direct-pred       &lt;int&gt;   E.V.. Direct MV prediction mode
+   none                    E.V..
+   spatial                 E.V..
+   temporal                E.V..
+   auto                    E.V..
+-slice-max-size    &lt;int&gt;   E.V.. Constant quantization parameter rate control method
+
+libxavs AVOptions:
+-crf               &lt;float&gt; E.V.. Select the quality for constant quality mode
+-qp                &lt;int&gt;   E.V.. Constant quantization parameter rate control method
+-b-bias            &lt;int&gt;   E.V.. Influences how often B-frames are used
+-cplxblur          &lt;float&gt; E.V.. Reduce fluctuations in QP (before curve compression)
+-direct-pred       &lt;int&gt;   E.V.. Direct MV prediction mode
+   none                    E.V..
+   spatial                 E.V..
+   temporal                E.V..
+   auto                    E.V..
+-aud               &lt;int&gt;   E.V.. Use access unit delimiters.
+-mbtree            &lt;int&gt;   E.V.. Use macroblock tree ratecontrol.
+-mixed-refs        &lt;int&gt;   E.V.. One reference per partition, as opposed to one reference per macroblock
+-fast-pskip        &lt;int&gt;   E.V..
+
+AVFormatContext AVOptions:
+-probesize         &lt;int&gt;   .D... set probing size
+-muxrate           &lt;int&gt;   E.... set mux rate
+-packetsize        &lt;int&gt;   E.... set packet size
+-fflags            &lt;flags&gt; ED...
+   ignidx                  .D... ignore index
+   genpts                  .D... generate pts
+   nofillin                .D... do not fill in missing values that can be exactly calculated
+   noparse                 .D... disable AVParsers, this needs nofillin too
+   igndts                  .D... ignore dts
+   rtphint                 E.... add rtp hinting (deprecated, use the -movflags rtphint option instead)
+   discardcorrupt          .D... discard corrupted frames
+   sortdts                 .D... try to interleave outputted packets by dts
+   keepside                .D... dont merge side data
+   latm                    E.... enable RTP MP4A-LATM payload
+-analyzeduration   &lt;int&gt;   .D... how many microseconds are analyzed to estimate duration
+-cryptokey         &lt;binary&gt; .D... decryption key
+-indexmem          &lt;int&gt;   .D... max memory used for timestamp index (per stream)
+-rtbufsize         &lt;int&gt;   .D... max memory used for buffering real-time frames
+-fdebug            &lt;flags&gt; ED... print specific debug info
+   ts                      ED...
+-max_delay         &lt;int&gt;   ED... maximum muxing or demuxing delay in microseconds
+-fpsprobesize      &lt;int&gt;   .D... number of frames used to probe fps
+-audio_preload     &lt;int&gt;   E.... microseconds by which audio packets should be interleaved earlier
+-chunk_duration    &lt;int&gt;   E.... microseconds for each chunk
+-chunk_size        &lt;int&gt;   E.... size in bytes for each chunk
+-f_err_detect      &lt;flags&gt; .D... set error detection flags (deprecated; use err_detect, save via avconv)
+   crccheck                .D... verify embedded CRCs
+   bitstream               .D... detect bitstream specification deviations
+   buffer                  .D... detect improper bitstream length
+   explode                 .D... abort decoding on minor error detection
+   careful                 .D... consider things that violate the spec and have not been seen in the wild as errors
+   compliant               .D... consider all spec non compliancies as errors
+   aggressive              .D... consider things that a sane encoder shouldnt do as an error
+-err_detect        &lt;flags&gt; .D... set error detection flags
+   crccheck                .D... verify embedded CRCs
+   bitstream               .D... detect bitstream specification deviations
+   buffer                  .D... detect improper bitstream length
+   explode                 .D... abort decoding on minor error detection
+   careful                 .D... consider things that violate the spec and have not been seen in the wild as errors
+   compliant               .D... consider all spec non compliancies as errors
+   aggressive              .D... consider things that a sane encoder shouldnt do as an error
+
+DirectShow indev AVOptions:
+-video_size        &lt;string&gt; .D... set video size given a string such as 640x480 or hd720.
+-framerate         &lt;string&gt; .D... set video frame rate
+-sample_rate       &lt;int&gt;   .D... set audio sample rate
+-sample_size       &lt;int&gt;   .D... set audio sample size
+-channels          &lt;int&gt;   .D... set number of audio channels, such as 1 or 2
+-list_devices      &lt;int&gt;   .D... list available devices
+   true                    .D...
+   false                   .D...
+-list_options      &lt;int&gt;   .D... list available options for specified device
+   true                    .D...
+   false                   .D...
+-video_device_number &lt;int&gt;   .D... set video device number for devices with same name (starts at 0)
+-audio_device_number &lt;int&gt;   .D... set audio device number for devices with same name (starts at 0)
+
+lavfi indev AVOptions:
+-graph             &lt;string&gt; .D... Libavfilter graph
+-dumpgraph         &lt;string&gt; .D... Dump graph to stderr
+
+VFW indev AVOptions:
+-video_size        &lt;string&gt; .D... A string describing frame size, such as 640x480 or hd720.
+-framerate         &lt;string&gt; .D...
+
+AVI demuxer AVOptions:
+-use_odml          &lt;int&gt;   .D... use odml index
+
+cavsvideo demuxer AVOptions:
+-framerate         &lt;string&gt; .D...
+
+dirac demuxer AVOptions:
+-framerate         &lt;string&gt; .D...
+
+dnxhd demuxer AVOptions:
+-framerate         &lt;string&gt; .D...
+
+g729 demuxer AVOptions:
+-bit_rate          &lt;int&gt;   .D...
+
+gsm demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+
+h261 demuxer AVOptions:
+-framerate         &lt;string&gt; .D...
+
+h263 demuxer AVOptions:
+-framerate         &lt;string&gt; .D...
+
+h264 demuxer AVOptions:
+-framerate         &lt;string&gt; .D...
+
+image2 demuxer AVOptions:
+-pixel_format      &lt;string&gt; .D...
+-video_size        &lt;string&gt; .D...
+-framerate         &lt;string&gt; .D...
+-loop              &lt;int&gt;   .D...
+
+image2pipe demuxer AVOptions:
+-pixel_format      &lt;string&gt; .D...
+-video_size        &lt;string&gt; .D...
+-framerate         &lt;string&gt; .D...
+-loop              &lt;int&gt;   .D...
+
+ingenient demuxer AVOptions:
+-framerate         &lt;string&gt; .D...
+
+m4v demuxer AVOptions:
+-framerate         &lt;string&gt; .D...
+
+mjpeg demuxer AVOptions:
+-framerate         &lt;string&gt; .D...
+
+mov,mp4,m4a,3gp,3g2,mj2 AVOptions:
+-use_absolute_path &lt;int&gt;   .DV.. allow using absolute path when opening alias, this is a possible security issue
+
+mpegtsraw demuxer AVOptions:
+-compute_pcr       &lt;int&gt;   .D... Compute exact PCR for each transport stream packet.
+
+mpegvideo demuxer AVOptions:
+-framerate         &lt;string&gt; .D...
+
+alaw demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+-channels          &lt;int&gt;   .D...
+
+mulaw demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+-channels          &lt;int&gt;   .D...
+
+f64be demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+-channels          &lt;int&gt;   .D...
+
+f64le demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+-channels          &lt;int&gt;   .D...
+
+f32be demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+-channels          &lt;int&gt;   .D...
+
+f32le demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+-channels          &lt;int&gt;   .D...
+
+s32be demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+-channels          &lt;int&gt;   .D...
+
+s32le demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+-channels          &lt;int&gt;   .D...
+
+s24be demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+-channels          &lt;int&gt;   .D...
+
+s24le demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+-channels          &lt;int&gt;   .D...
+
+s16be demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+-channels          &lt;int&gt;   .D...
+
+s16le demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+-channels          &lt;int&gt;   .D...
+
+s8 demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+-channels          &lt;int&gt;   .D...
+
+u32be demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+-channels          &lt;int&gt;   .D...
+
+u32le demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+-channels          &lt;int&gt;   .D...
+
+u24be demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+-channels          &lt;int&gt;   .D...
+
+u24le demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+-channels          &lt;int&gt;   .D...
+
+u16be demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+-channels          &lt;int&gt;   .D...
+
+u16le demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+-channels          &lt;int&gt;   .D...
+
+u8 demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+-channels          &lt;int&gt;   .D...
+
+rawvideo demuxer AVOptions:
+-video_size        &lt;string&gt; .D... A string describing frame size, such as 640x480 or hd720.
+-pixel_format      &lt;string&gt; .D...
+-framerate         &lt;string&gt; .D...
+
+RTP demuxer AVOptions:
+-rtp_flags         &lt;flags&gt; .D... RTP flags
+   filter_src              .D... Only receive packets from the negotiated peer IP
+
+RTSP demuxer AVOptions:
+-initial_pause     &lt;int&gt;   .D... Don't start playing the stream immediately
+-rtpflags          &lt;flags&gt; E.... RTP muxer flags
+   latm                    E.... Use MP4A-LATM packetization instead of MPEG4-GENERIC for AAC
+-rtsp_transport    &lt;flags&gt; ED... RTSP transport protocols
+   udp                     ED... UDP
+   tcp                     ED... TCP
+   udp_multicast           .D... UDP multicast
+   http                    .D... HTTP tunneling
+-rtsp_flags        &lt;flags&gt; .D... RTSP flags
+   filter_src              .D... Only receive packets from the negotiated peer IP
+-allowed_media_types &lt;flags&gt; .D... Media types to accept from the server
+   video                   .D... Video
+   audio                   .D... Audio
+   data                    .D... Data
+-min_port          &lt;int&gt;   ED... Minimum local UDP port
+-max_port          &lt;int&gt;   ED... Maximum local UDP port
+
+sbg_demuxer AVOptions:
+-sample_rate       &lt;int&gt;   .D...
+-frame_size        &lt;int&gt;   .D...
+-max_file_size     &lt;int&gt;   .D...
+
+SDP demuxer AVOptions:
+-sdp_flags         &lt;flags&gt; .D... SDP flags
+   filter_src              .D... Only receive packets from the negotiated peer IP
+-allowed_media_types &lt;flags&gt; .D... Media types to accept from the server
+   video                   .D... Video
+   audio                   .D... Audio
+   data                    .D... Data
+
+TTY demuxer AVOptions:
+-chars_per_frame   &lt;int&gt;   .D...
+-video_size        &lt;string&gt; .D... A string describing frame size, such as 640x480 or hd720.
+-framerate         &lt;string&gt; .D...
+
+vc1 demuxer AVOptions:
+-framerate         &lt;string&gt; .D...
+
+WAV demuxer AVOptions:
+-ignore_length     &lt;int&gt;   .D... Ignore length
+
+sdl outdev AVOptions:
+-window_title      &lt;string&gt; E.... SDL window title
+-icon_title        &lt;string&gt; E.... SDL iconified window title
+-window_size       &lt;string&gt; E.... SDL window forced size
+
+dv AVOptions:
+-timecode          &lt;string&gt; E.... set timecode value following hh:mm:ss[:;.]ff format, use ';' or '.' before frame number for drop frame
+
+GIF muxer AVOptions:
+-loop              &lt;int&gt;   E.... Number of times to loop the output.
+
+GXF muxer AVOptions:
+-timecode          &lt;string&gt; E.... set timecode value following hh:mm:ss[:;.]ff format, use ';' or '.' before frame number for drop frame
+
+image2 muxer AVOptions:
+-updatefirst       &lt;int&gt;   E....
+
+ipod muxer AVOptions:
+-movflags          &lt;flags&gt; E.... MOV muxer flags
+   rtphint                 E.... Add RTP hint tracks
+   empty_moov              E.... Make the initial moov atom empty (not supported by QuickTime)
+   frag_keyframe           E.... Fragment at video keyframes
+   separate_moof           E.... Write separate moof/mdat atoms for each track
+   frag_custom             E.... Flush fragments on caller requests
+-moov_size         &lt;int&gt;   E.... maximum moov size so it can be placed at the begin
+-rtpflags          &lt;flags&gt; E.... RTP muxer flags
+   latm                    E.... Use MP4A-LATM packetization instead of MPEG4-GENERIC for AAC
+-skip_iods         &lt;int&gt;   E.... Skip writing iods atom.
+-iods_audio_profile &lt;int&gt;   E.... iods audio profile atom.
+-iods_video_profile &lt;int&gt;   E.... iods video profile atom.
+-frag_duration     &lt;int&gt;   E.... Maximum fragment duration
+-frag_size         &lt;int&gt;   E.... Maximum fragment size
+-ism_lookahead     &lt;int&gt;   E.... Number of lookahead entries for ISM files
+
+ismv muxer AVOptions:
+-movflags          &lt;flags&gt; E.... MOV muxer flags
+   rtphint                 E.... Add RTP hint tracks
+   empty_moov              E.... Make the initial moov atom empty (not supported by QuickTime)
+   frag_keyframe           E.... Fragment at video keyframes
+   separate_moof           E.... Write separate moof/mdat atoms for each track
+   frag_custom             E.... Flush fragments on caller requests
+-moov_size         &lt;int&gt;   E.... maximum moov size so it can be placed at the begin
+-rtpflags          &lt;flags&gt; E.... RTP muxer flags
+   latm                    E.... Use MP4A-LATM packetization instead of MPEG4-GENERIC for AAC
+-skip_iods         &lt;int&gt;   E.... Skip writing iods atom.
+-iods_audio_profile &lt;int&gt;   E.... iods audio profile atom.
+-iods_video_profile &lt;int&gt;   E.... iods video profile atom.
+-frag_duration     &lt;int&gt;   E.... Maximum fragment duration
+-frag_size         &lt;int&gt;   E.... Maximum fragment size
+-ism_lookahead     &lt;int&gt;   E.... Number of lookahead entries for ISM files
+
+LATM/LOAS muxer AVOptions:
+-smc-interval      &lt;int&gt;   E.... StreamMuxConfig interval.
+
+mov muxer AVOptions:
+-movflags          &lt;flags&gt; E.... MOV muxer flags
+   rtphint                 E.... Add RTP hint tracks
+   empty_moov              E.... Make the initial moov atom empty (not supported by QuickTime)
+   frag_keyframe           E.... Fragment at video keyframes
+   separate_moof           E.... Write separate moof/mdat atoms for each track
+   frag_custom             E.... Flush fragments on caller requests
+-moov_size         &lt;int&gt;   E.... maximum moov size so it can be placed at the begin
+-rtpflags          &lt;flags&gt; E.... RTP muxer flags
+   latm                    E.... Use MP4A-LATM packetization instead of MPEG4-GENERIC for AAC
+-skip_iods         &lt;int&gt;   E.... Skip writing iods atom.
+-iods_audio_profile &lt;int&gt;   E.... iods audio profile atom.
+-iods_video_profile &lt;int&gt;   E.... iods video profile atom.
+-frag_duration     &lt;int&gt;   E.... Maximum fragment duration
+-frag_size         &lt;int&gt;   E.... Maximum fragment size
+-ism_lookahead     &lt;int&gt;   E.... Number of lookahead entries for ISM files
+
+MP3 muxer AVOptions:
+-id3v2_version     &lt;int&gt;   E.... Select ID3v2 version to write. Currently 3 and 4 are supported.
+-write_id3v1       &lt;int&gt;   E.... Enable ID3v1 writing. ID3v1 tags are written in UTF-8 which may not be supported by most software.
+
+mp4 muxer AVOptions:
+-movflags          &lt;flags&gt; E.... MOV muxer flags
+   rtphint                 E.... Add RTP hint tracks
+   empty_moov              E.... Make the initial moov atom empty (not supported by QuickTime)
+   frag_keyframe           E.... Fragment at video keyframes
+   separate_moof           E.... Write separate moof/mdat atoms for each track
+   frag_custom             E.... Flush fragments on caller requests
+-moov_size         &lt;int&gt;   E.... maximum moov size so it can be placed at the begin
+-rtpflags          &lt;flags&gt; E.... RTP muxer flags
+   latm                    E.... Use MP4A-LATM packetization instead of MPEG4-GENERIC for AAC
+-skip_iods         &lt;int&gt;   E.... Skip writing iods atom.
+-iods_audio_profile &lt;int&gt;   E.... iods audio profile atom.
+-iods_video_profile &lt;int&gt;   E.... iods video profile atom.
+-frag_duration     &lt;int&gt;   E.... Maximum fragment duration
+-frag_size         &lt;int&gt;   E.... Maximum fragment size
+-ism_lookahead     &lt;int&gt;   E.... Number of lookahead entries for ISM files
+
+mpeg muxer AVOptions:
+-muxrate           &lt;int&gt;   E....
+-preload           &lt;int&gt;   E.... Initial demux-decode delay in microseconds.
+
+vcd muxer AVOptions:
+-muxrate           &lt;int&gt;   E....
+-preload           &lt;int&gt;   E.... Initial demux-decode delay in microseconds.
+
+dvd muxer AVOptions:
+-muxrate           &lt;int&gt;   E....
+-preload           &lt;int&gt;   E.... Initial demux-decode delay in microseconds.
+
+svcd muxer AVOptions:
+-muxrate           &lt;int&gt;   E....
+-preload           &lt;int&gt;   E.... Initial demux-decode delay in microseconds.
+
+vob muxer AVOptions:
+-muxrate           &lt;int&gt;   E....
+-preload           &lt;int&gt;   E.... Initial demux-decode delay in microseconds.
+
+MPEGTS muxer AVOptions:
+-mpegts_transport_stream_id &lt;int&gt;   E.... Set transport_stream_id field.
+-mpegts_original_network_id &lt;int&gt;   E.... Set original_network_id field.
+-mpegts_service_id &lt;int&gt;   E.... Set service_id field.
+-mpegts_pmt_start_pid &lt;int&gt;   E.... Set the first pid of the PMT.
+-mpegts_start_pid  &lt;int&gt;   E.... Set the first pid.
+-mpegts_m2ts_mode  &lt;int&gt;   E.... Enable m2ts mode.
+-muxrate           &lt;int&gt;   E....
+-pes_payload_size  &lt;int&gt;   E.... Minimum PES packet payload in bytes
+
+mxf AVOptions:
+-timecode          &lt;string&gt; E.... set timecode value following hh:mm:ss[:;.]ff format, use ';' or '.' before frame number for drop frame
+
+mxf_d10 AVOptions:
+-timecode          &lt;string&gt; E.... set timecode value following hh:mm:ss[:;.]ff format, use ';' or '.' before frame number for drop frame
+
+Ogg muxer AVOptions:
+-oggpagesize       &lt;int&gt;   E.... Set preferred Ogg page size.
+
+psp muxer AVOptions:
+-movflags          &lt;flags&gt; E.... MOV muxer flags
+   rtphint                 E.... Add RTP hint tracks
+   empty_moov              E.... Make the initial moov atom empty (not supported by QuickTime)
+   frag_keyframe           E.... Fragment at video keyframes
+   separate_moof           E.... Write separate moof/mdat atoms for each track
+   frag_custom             E.... Flush fragments on caller requests
+-moov_size         &lt;int&gt;   E.... maximum moov size so it can be placed at the begin
+-rtpflags          &lt;flags&gt; E.... RTP muxer flags
+   latm                    E.... Use MP4A-LATM packetization instead of MPEG4-GENERIC for AAC
+-skip_iods         &lt;int&gt;   E.... Skip writing iods atom.
+-iods_audio_profile &lt;int&gt;   E.... iods audio profile atom.
+-iods_video_profile &lt;int&gt;   E.... iods video profile atom.
+-frag_duration     &lt;int&gt;   E.... Maximum fragment duration
+-frag_size         &lt;int&gt;   E.... Maximum fragment size
+-ism_lookahead     &lt;int&gt;   E.... Number of lookahead entries for ISM files
+
+RTP muxer AVOptions:
+-rtpflags          &lt;flags&gt; E.... RTP muxer flags
+   latm                    E.... Use MP4A-LATM packetization instead of MPEG4-GENERIC for AAC
+-payload_type      &lt;int&gt;   E.... Specify RTP payload type
+
+RTSP muxer AVOptions:
+-initial_pause     &lt;int&gt;   .D... Don't start playing the stream immediately
+-rtpflags          &lt;flags&gt; E.... RTP muxer flags
+   latm                    E.... Use MP4A-LATM packetization instead of MPEG4-GENERIC for AAC
+-rtsp_transport    &lt;flags&gt; ED... RTSP transport protocols
+   udp                     ED... UDP
+   tcp                     ED... TCP
+   udp_multicast           .D... UDP multicast
+   http                    .D... HTTP tunneling
+-rtsp_flags        &lt;flags&gt; .D... RTSP flags
+   filter_src              .D... Only receive packets from the negotiated peer IP
+-allowed_media_types &lt;flags&gt; .D... Media types to accept from the server
+   video                   .D... Video
+   audio                   .D... Audio
+   data                    .D... Data
+-min_port          &lt;int&gt;   ED... Minimum local UDP port
+-max_port          &lt;int&gt;   ED... Maximum local UDP port
+
+segment muxer AVOptions:
+-segment_format    &lt;string&gt; E.... container format used for the segments
+-segment_time      &lt;float&gt; E.... segment length in seconds
+-segment_list      &lt;string&gt; E.... output the segment list
+-segment_list_size &lt;int&gt;   E.... maximum number of playlist entries
+
+spdif AVOptions:
+-spdif_flags       &lt;flags&gt; E.... IEC 61937 encapsulation flags
+   be                      E.... output in big-endian format (for use as s16be)
+-dtshd_rate        &lt;int&gt;   E.... mux complete DTS frames in HD mode at the specified IEC958 rate (in Hz, default 0=disabled)
+-dtshd_fallback_time &lt;int&gt;   E.... min secs to strip HD for after an overflow (-1: till the end, default 60)
+
+tg2 muxer AVOptions:
+-movflags          &lt;flags&gt; E.... MOV muxer flags
+   rtphint                 E.... Add RTP hint tracks
+   empty_moov              E.... Make the initial moov atom empty (not supported by QuickTime)
+   frag_keyframe           E.... Fragment at video keyframes
+   separate_moof           E.... Write separate moof/mdat atoms for each track
+   frag_custom             E.... Flush fragments on caller requests
+-moov_size         &lt;int&gt;   E.... maximum moov size so it can be placed at the begin
+-rtpflags          &lt;flags&gt; E.... RTP muxer flags
+   latm                    E.... Use MP4A-LATM packetization instead of MPEG4-GENERIC for AAC
+-skip_iods         &lt;int&gt;   E.... Skip writing iods atom.
+-iods_audio_profile &lt;int&gt;   E.... iods audio profile atom.
+-iods_video_profile &lt;int&gt;   E.... iods video profile atom.
+-frag_duration     &lt;int&gt;   E.... Maximum fragment duration
+-frag_size         &lt;int&gt;   E.... Maximum fragment size
+-ism_lookahead     &lt;int&gt;   E.... Number of lookahead entries for ISM files
+
+tgp muxer AVOptions:
+-movflags          &lt;flags&gt; E.... MOV muxer flags
+   rtphint                 E.... Add RTP hint tracks
+   empty_moov              E.... Make the initial moov atom empty (not supported by QuickTime)
+   frag_keyframe           E.... Fragment at video keyframes
+   separate_moof           E.... Write separate moof/mdat atoms for each track
+   frag_custom             E.... Flush fragments on caller requests
+-moov_size         &lt;int&gt;   E.... maximum moov size so it can be placed at the begin
+-rtpflags          &lt;flags&gt; E.... RTP muxer flags
+   latm                    E.... Use MP4A-LATM packetization instead of MPEG4-GENERIC for AAC
+-skip_iods         &lt;int&gt;   E.... Skip writing iods atom.
+-iods_audio_profile &lt;int&gt;   E.... iods audio profile atom.
+-iods_video_profile &lt;int&gt;   E.... iods video profile atom.
+-frag_duration     &lt;int&gt;   E.... Maximum fragment duration
+-frag_size         &lt;int&gt;   E.... Maximum fragment size
+-ism_lookahead     &lt;int&gt;   E.... Number of lookahead entries for ISM files
+
+WAV muxer AVOptions:
+-write_bext        &lt;int&gt;   E.... Write BEXT chunk.
+
+SWScaler AVOptions:
+-sws_flags         &lt;flags&gt; E.V.. scaler/cpu flags
+   fast_bilinear           E.V.. fast bilinear
+   bilinear                E.V.. bilinear
+   bicubic                 E.V.. bicubic
+   experimental            E.V.. experimental
+   neighbor                E.V.. nearest neighbor
+   area                    E.V.. averaging area
+   bicublin                E.V.. luma bicubic, chroma bilinear
+   gauss                   E.V.. gaussian
+   sinc                    E.V.. sinc
+   lanczos                 E.V.. lanczos
+   spline                  E.V.. natural bicubic spline
+   print_info              E.V.. print info
+   accurate_rnd            E.V.. accurate rounding
+   full_chroma_int         E.V.. full chroma interpolation
+   full_chroma_inp         E.V.. full chroma input
+   bitexact                E.V..
+-srcw              &lt;int&gt;   E.V.. source width
+-srch              &lt;int&gt;   E.V.. source height
+-dstw              &lt;int&gt;   E.V.. destination width
+-dsth              &lt;int&gt;   E.V.. destination height
+-src_format        &lt;int&gt;   E.V.. source format
+-dst_format        &lt;int&gt;   E.V.. destination format
+-src_range         &lt;int&gt;   E.V.. source range
+-dst_range         &lt;int&gt;   E.V.. destination range
+-param0            &lt;double&gt; E.V.. scaler param 0
+-param1            &lt;double&gt; E.V.. scaler param 1</value>
+  </data>
 </root>

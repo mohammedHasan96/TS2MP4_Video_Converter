@@ -12,11 +12,12 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <GroupBox Header="ffmpeg Arguments"
                   Padding="5">
             <StackPanel>
-                <RadioButton Content="Default Args: '-i $InputFile -y -async 1 -b 2000k -ar $AudioSamplingRateHz -ac 2 -v 0 -f mp4 -vcodec libx264 $OutputFile'"
+                <RadioButton Content="Default Args: '-i $InputFile -c:v libx264 -c:a copy $OutputFile'"
                              Margin="5"
                              IsChecked="{Binding IsDefault, FallbackValue=True}"
                              />
@@ -26,7 +27,7 @@
                     <StackPanel IsEnabled="{Binding ElementName=cutomArgsCheckBox, Path=IsChecked}">
                         <TextBlock Text="Custom Args" />
                         <TextBox MinHeight="50"
-                                 Text="{Binding CustomArgs, FallbackValue='-i $InputFile -y -async 1 -b 2000k -ar $AudioSamplingRateHz -ac 2 -v 0 -f mp4 -vcodec libx264 $OutputFile'}"
+                                 Text="{Binding CustomArgs}"
                                  Margin="5"/>
                         <TextBlock Text="note: you can use some variables such as $VideoBitrate which will contains the Video bitrate forech .ts file."
                                    TextWrapping="Wrap"/>
@@ -70,6 +71,15 @@
                   Grid.Row="2">
             <CheckBox IsChecked="{Binding IsDelete}"
                       Content="Delete .ts File after convert success"/>
+        </GroupBox>
+
+        <GroupBox Header="ffmpeg -h (help)"
+                  Padding="5"
+                  Grid.Row="3">
+            <TextBox IsReadOnly="True"
+                     Text="{Binding FFmpegHelp}"
+                     VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Auto"/>
         </GroupBox>
 
     </Grid>

@@ -23,8 +23,9 @@ namespace TS2MP4_Video_Converter.ViewModels
         public virtual bool IsDefault { get; set; } = true;
         public virtual bool ConvertEnabled { get; set; }
         public virtual bool IsDelete { get; set; }
-        public virtual string CustomArgs { get; set; } = "-i $InputFile -y -async 1 -b 2000k -ar $AudioSamplingRateHz -ac 2 -v 0 -f mp4 -vcodec libx264 $OutputFile";
+        public virtual string CustomArgs { get; set; } = "-i $InputFile -y -c:v libx264 -c:a copy $OutputFile";
         public virtual string OutputDirectory { get; set; } = "$Videos\\TS2MP4";
+        public virtual string FFmpegHelp { get; set; } = Properties.Resources.FFmpegHelp;
         public virtual TsFilesCollectionItem SelectedTsFile { get; set; }
         public ObservableCollection<TsFilesCollectionItem> TsFilesCollection { get; } = new ObservableCollection<TsFilesCollectionItem>();
 
@@ -106,32 +107,22 @@ namespace TS2MP4_Video_Converter.ViewModels
 
                         string ffmpegArguments;
                         if (IsDefault)
-                            ffmpegArguments = $"-i \"{item.FileName}\" -y -async 1 -b 2000k -ar 44100 -ac 2 -v 0 -f mp4 -vcodec libx264 \"{outputPath}\"";
+                            ffmpegArguments = $"-i \"{item.FileName}\" -y -c:v libx264 -c:a copy  \"{outputPath}\"";
                         else
                         {
-                            ffmpegArguments = CustomArgs.Replace("$InputFile", item.FileName);
+                            ffmpegArguments = CustomArgs.Replace("$InputFile", $"\"{item.FileName}\"");
                             ffmpegArguments = ffmpegArguments.Replace("$VideoBitrate", (mediaInfo["VideoInfo"]["Bitrate"].Value<int>() / 1000).ToString("0k"));
                             ffmpegArguments = ffmpegArguments.Replace("$AudioSamplingRateHz", "44100");
                             ffmpegArguments = ffmpegArguments.Replace("$OutputFile", outputPath);
                             ffmpegArguments = ffmpegArguments.Replace("$Videos", videosPath);
                         }
 
-                        currentProcess = StartProcess(ffmpegFileName, ffmpegArguments, false);
+                        currentProcess = StartProcess(ffmpegFileName, ffmpegArguments, false, false, false);
                         currentProcess.WaitForExit();
-                        var output = currentProcess.StandardOutput.ReadToEnd();
-                        var error = currentProcess.StandardError.ReadToEnd();
-                        if (error.Trim().Length == 0)
-                        {
-                            if (IsDelete)
-                                System.IO.File.Delete(item.FileName);
-                            item.Status = ConvertStatus.Success;
-                            Log += $"converting file {item.FileName} DONE!\n";
-                        }
-                        else
-                        {
-                            item.Status = ConvertStatus.Failed;
-                            Log += $"converting file {item.FileName} Failed!\n";
-                        }
+                        if (IsDelete)
+                            System.IO.File.Delete(item.FileName);
+                        item.Status = ConvertStatus.Success;
+                        Log += $"converting file {item.FileName} DONE!\n";
                     }
                     catch (Exception ex)
                     {
@@ -150,12 +141,16 @@ namespace TS2MP4_Video_Converter.ViewModels
 
         public void Exit()
         {
-            if (currentProcess != null)
-                currentProcess.Kill();
+            try
+            {
+                if (currentProcess != null)
+                    currentProcess.Kill();
+            }
+            catch { }
             Environment.Exit(0);
         }
 
-        Process StartProcess(string fileName, string args, bool wait = true)
+        Process StartProcess(string fileName, string args, bool wait = true, bool redirectStandardOutput = true, bool redirectStandardError = true)
         {
             var process = new Process()
             {
@@ -163,8 +158,8 @@ namespace TS2MP4_Video_Converter.ViewModels
                 {
                     FileName = fileName,
                     Arguments = args,
-                    RedirectStandardError = true,
-                    RedirectStandardOutput = true,
+                    RedirectStandardError = redirectStandardError,
+                    RedirectStandardOutput = redirectStandardOutput,
                     UseShellExecute = false,
                     CreateNoWindow = true,
                 }
